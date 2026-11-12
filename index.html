@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Laboratorio virtual de manipulación y ensamblaje 3D para Meta Quest 3.">
+    <meta name="theme-color" content="#101b24">
+    <title>NEXO-5 · Laboratorio virtual de ensamblaje</title>
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/site.css">
+
+    <!-- Debe aparecer antes de cualquier script type="module". -->
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://cdn.jsdelivr.net/npm/three@0.187.0/build/three.module.js",
+          "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.187.0/examples/jsm/"
+        }
+      }
+    </script>
+  </head>
+
+  <body>
+    <header class="site-header">
+      <nav class="container-xl navbar navbar-expand-lg px-0" aria-label="Navegación principal">
+        <a class="brand-lockup" href="#inicio" aria-label="NEXO-5, inicio">
+          <span class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></span>
+          <span>
+            <span class="brand-name">NEXO-5</span>
+            <span class="brand-subtitle">laboratorio inmersivo</span>
+          </span>
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#mainNavigation"
+          aria-controls="mainNavigation"
+          aria-expanded="false"
+          aria-label="Abrir navegación">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mainNavigation">
+          <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-4">
+            <li class="nav-item"><a class="nav-link" href="#objetivos">Objetivos</a></li>
+            <li class="nav-item"><a class="nav-link" href="#manos">Cómo funciona</a></li>
+            <li class="nav-item"><a class="nav-link" href="#compatibilidad">Compatibilidad</a></li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+    <main id="inicio">
+      <section class="hero-section container-xl" aria-labelledby="hero-title">
+        <div class="row align-items-center g-5">
+          <div class="col-lg-6 hero-copy">
+            <p class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span> práctica de interacción espacial</p>
+            <h1 id="hero-title">Arma el espacio,<br><em>pieza a pieza.</em></h1>
+            <p class="hero-lead">
+              Un laboratorio virtual para aprender cómo una mano puede apuntar,
+              tomar y ensamblar objetos 3D dentro de una escena WebXR.
+            </p>
+
+            <div class="hero-actions" aria-label="Acciones de la práctica">
+              <div id="vr-button-mount" class="vr-button-mount">
+                <button class="btn btn-vr" type="button" disabled aria-describedby="compatibility-message">
+                  Comprobando visor…
+                </button>
+              </div>
+              <a class="text-link" href="#manos">Ver los gestos de interacción <span aria-hidden="true">↘</span></a>
+            </div>
+
+            <p id="compatibility-message" class="compatibility-message" role="status" aria-live="polite">
+              Comprobando si este navegador puede iniciar una sesión VR.
+            </p>
+
+            <div class="hero-facts" aria-label="Datos rápidos de la práctica">
+              <div><strong>05</strong><span>piezas</span></div>
+              <div><strong>01</strong><span>mesa de trabajo</span></div>
+              <div><strong>∞</strong><span>intentos</span></div>
+            </div>
+          </div>
+
+          <div class="col-lg-6">
+            <div class="preview-frame" aria-label="Previsualización 3D de la mesa de trabajo">
+              <div class="preview-topline">
+                <span>vista de preparación</span>
+                <span class="preview-live"><span aria-hidden="true"></span> render activo</span>
+              </div>
+              <canvas id="preview-canvas" aria-label="Previsualización tridimensional decorativa"></canvas>
+              <div class="preview-caption">
+                <span>mesa / calibración inicial</span>
+                <span>WebGL · 3D</span>
+              </div>
+              <div class="preview-corner preview-corner-tl" aria-hidden="true"></div>
+              <div class="preview-corner preview-corner-br" aria-hidden="true"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="objetivos" class="objectives-section container-xl" aria-labelledby="objectives-title">
+        <div class="section-heading-row">
+          <div>
+            <p class="eyebrow">la misión</p>
+            <h2 id="objectives-title">Cinco objetivos.<br><span>Una sola secuencia.</span></h2>
+          </div>
+          <p class="section-intro">Cada forma tiene un lugar. El laboratorio evalúa la relación entre identidad, distancia y precisión.</p>
+        </div>
+
+        <ol class="objective-rail">
+          <li><span class="objective-number">01</span><span class="shape-token token-cube" aria-hidden="true"></span><span>Reconocer</span></li>
+          <li><span class="objective-number">02</span><span class="shape-token token-orb" aria-hidden="true"></span><span>Apuntar</span></li>
+          <li><span class="objective-number">03</span><span class="shape-token token-cone" aria-hidden="true"></span><span>Tomar</span></li>
+          <li><span class="objective-number">04</span><span class="shape-token token-cylinder" aria-hidden="true"></span><span>Trasladar</span></li>
+          <li><span class="objective-number">05</span><span class="shape-token token-prism" aria-hidden="true"></span><span>Encajar</span></li>
+        </ol>
+      </section>
+
+      <section id="manos" class="hands-section container-xl" aria-labelledby="hands-title">
+        <div class="row g-5">
+          <div class="col-lg-4">
+            <p class="eyebrow">control natural</p>
+            <h2 id="hands-title">Tus manos son<br><span>la interfaz.</span></h2>
+            <p class="section-copy">La escena vive dentro del visor. La portada solo prepara la actividad; el contador y los controles estarán construidos en 3D.</p>
+          </div>
+          <div class="col-lg-8">
+            <div class="gesture-list">
+              <article class="gesture-row">
+                <span class="gesture-index">A</span>
+                <div><h3>Apunta</h3><p>Extiende el índice para dirigir el rayo hacia una pieza.</p></div>
+                <span class="gesture-symbol" aria-hidden="true">⌁</span>
+              </article>
+              <article class="gesture-row">
+                <span class="gesture-index">B</span>
+                <div><h3>Haz pinza</h3><p>Acerca el pulgar al índice para tomar la pieza resaltada.</p></div>
+                <span class="gesture-symbol" aria-hidden="true">⊙</span>
+              </article>
+              <article class="gesture-row">
+                <span class="gesture-index">C</span>
+                <div><h3>Suelta</h3><p>Libera la pinza dentro de su destino y recibe feedback inmediato.</p></div>
+                <span class="gesture-symbol" aria-hidden="true">✦</span>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="compatibilidad" class="compatibility-section container-xl" aria-labelledby="compatibility-title">
+        <div class="compatibility-panel">
+          <div>
+            <p class="eyebrow">antes de entrar</p>
+            <h2 id="compatibility-title">Comprueba tu estación.</h2>
+            <p class="section-copy">La experiencia necesita Meta Quest Browser, WebXR y seguimiento de manos. Esta verificación no sustituye la prueba física en el visor.</p>
+          </div>
+          <div class="capability-readout" role="status" aria-live="polite">
+            <div class="capability-status-line"><span id="capability-indicator" class="status-indicator status-checking" aria-hidden="true"></span><strong id="capability-status">Comprobando capacidades</strong></div>
+            <p id="capability-details">El resultado aparecerá aquí.</p>
+          </div>
+        </div>
+        <div class="requirements-grid" aria-label="Requisitos técnicos">
+          <div><span>01</span><strong>Meta Quest 3</strong><small>visor recomendado</small></div>
+          <div><span>02</span><strong>Quest Browser</strong><small>navegador WebXR</small></div>
+          <div><span>03</span><strong>HTTPS</strong><small>necesario fuera de localhost</small></div>
+          <div><span>04</span><strong>Manos libres</strong><small>sin mandos físicos</small></div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container-xl d-flex flex-column flex-md-row justify-content-between gap-3">
+        <p class="mb-0">NEXO-5 · práctica educativa de ingeniería de software inmersivo</p>
+        <p class="mb-0">Desarrollado por Maricruz Pineda Lara</p>
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <script>
+      (() => {
+        const showDependencyError = (message) => {
+          const compatibilityMessage = document.querySelector('#compatibility-message');
+          const capabilityStatus = document.querySelector('#capability-status');
+          const capabilityDetails = document.querySelector('#capability-details');
+          const capabilityIndicator = document.querySelector('#capability-indicator');
+          if (compatibilityMessage) {
+            compatibilityMessage.textContent = message;
+            compatibilityMessage.className = 'compatibility-message is-error';
+          }
+          if (capabilityStatus) capabilityStatus.textContent = 'Error de carga';
+          if (capabilityDetails) capabilityDetails.textContent = message;
+          if (capabilityIndicator) capabilityIndicator.className = 'status-indicator status-error';
+        };
+
+        window.addEventListener('error', (event) => {
+          const source = event.filename || '';
+          if (source.includes('cdn.jsdelivr.net') || source.includes('/src/')) {
+            showDependencyError('No se pudo cargar una dependencia. Revisa Console y Network.');
+          }
+        });
+
+        window.addEventListener('unhandledrejection', (event) => {
+          if (String(event.reason || '').toLowerCase().includes('module')) {
+            showDependencyError('Falló la carga de un módulo. Comprueba las URLs del CDN y el servidor HTTP.');
+          }
+        });
+      })();
+    </script>
+    <script type="module" src="./src/main.js"></script>
+  </body>
+</html>

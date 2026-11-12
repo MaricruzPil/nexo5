@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title desc">
+  <title id="title">NEXO-5</title>
+  <desc id="desc">Marca geométrica de tres nodos</desc>
+  <rect width="64" height="64" rx="16" fill="#101b24"/>
+  <path d="M17 17h12v12H17zM35 17h12v12H35zM26 35h12v12H26z" fill="#3db7aa"/>
+  <path d="M29 23h6M23 29l6 6M41 29l-6 6" stroke="#f2b84b" stroke-width="3" stroke-linecap="round"/>
+</svg>
